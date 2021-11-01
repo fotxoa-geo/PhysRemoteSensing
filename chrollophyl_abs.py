@@ -1,3 +1,5 @@
+import numpy as np
+
 cc_bond = 348 # kj/mol
 h = 6.62607015e-34 # planck's constant
 c = 3e8 # m/s
@@ -28,3 +30,23 @@ energy_intercept_leaf = sun_energy*leaf_m2
 energy_1kg_glucose = 1.5e7
 seconds_1kg_glucose = energy_1kg_glucose/energy_intercept_leaf
 print(seconds_1kg_glucose)
+
+# Overtone absorptions
+v1 = [[7463 * 10 **-9]]
+v2 = [[14493 * 10 **-9]]
+v3 = [[4257 * 10 **-9]]
+
+v1_2 = np.linalg.inv((2 * np.linalg.inv(v1)))
+print(v1_2/10e-9)
+v2_2 = np.linalg.inv((2 * np.linalg.inv(v2)))
+print(v2_2/10e-9)
+v3_2 = np.linalg.inv((2 * np.linalg.inv(v3)))
+print(v3_2/10e-9)
+
+v1_v2 = np.linalg.inv(np.linalg.inv(v1) + np.linalg.inv(v2))
+v1_v3 = np.linalg.inv(np.linalg.inv(v1) + np.linalg.inv(v3))
+v2_v3 = np.linalg.inv(np.linalg.inv(v2) + np.linalg.inv(v3))
+print(v1_v2/10e-9)
+print(v1_v3/10e-9)
+print(v2_v3/10e-9)
+
